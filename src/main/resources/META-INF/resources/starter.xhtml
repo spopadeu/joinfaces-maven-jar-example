@@ -53,13 +53,14 @@
             <p:tab title="PF Training" id="tabPfTraining">
                 <h:form>
                     <p:dataTable var="employee" value="#{employeeBean.employeeList}"
-                                 filteredValue="#{employeeBean.filteredEmployeeList}"
+
                                  widgetVar="employeeWidget"
                                  paginator="true" rows="10"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink}
                      {PreviousPageLink} {PageLinks} {NextPageLink}
                      {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="5,10,15">
+                                 rowsPerPageTemplate="5,10,15" >
+<!--                        filteredValue="#{employeeBean.filteredEmployeeList}"-->
                         <f:facet name="header">
                             <p:outputPanel>
                                 <h:outputText value="Search all:"/>
@@ -79,12 +80,7 @@
                         </p:column>
                         <p:column headerText="Department" filterBy="#{employee.department}"
                                   filterMatchMode="exact">
-                            <f:facet name="filter">
-                                <p:selectOneMenu onchange="PF('employeeWidget').filter()">
-                                    <f:selectItem itemLabel="Select dept" itemValue="#{null}" noSelectionOption="true"/>
-                                    <f:selectItems value="#{employeeBean.deptList}"/>
-                                </p:selectOneMenu>
-                            </f:facet>
+
                             <h:outputText value="#{employee.department}"/>
                         </p:column>
 

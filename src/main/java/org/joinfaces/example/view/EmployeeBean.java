@@ -1,8 +1,12 @@
 package org.joinfaces.example.view;
 
 
+import lombok.Getter;
 import org.joinfaces.example.entities.Employee;
+import org.joinfaces.example.repositories.EmployeeRepository;
 import org.joinfaces.example.services.DataService;
+import org.primefaces.model.LazyDataModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -11,28 +15,20 @@ import java.util.List;
 
 @Component
 @ViewScoped
+@Getter
 public class EmployeeBean {
-    private List<Employee> employeeList;
-    private List<Employee> filteredEmployeeList;
+    EmployeeLazyDataModel dataModel = new EmployeeLazyDataModel();
 
-    @PostConstruct
-    public void postConstruct() {
-        employeeList = DataService.INSTANCE.getEmployeeList();
+    public LazyDataModel<Employee> getModel(){
+        return dataModel;
     }
 
-    public List<Employee> getEmployeeList() {
-        return employeeList;
-    }
-
-    public List<Employee> getFilteredEmployeeList() {
-        return filteredEmployeeList;
-    }
-
-    public void setFilteredEmployeeList(List<Employee> filteredEmployeeList) {
-        this.filteredEmployeeList = filteredEmployeeList;
-    }
-
-    public List<String> getDeptList(){
-        return DataService.INSTANCE.getDepartments();
-    }
+//    private List<Employee> employeeList;
+//    @Autowired
+//    EmployeeRepository employeeRepository;
+//
+//    @PostConstruct
+//    public void init(){
+//        this.employeeList = employeeRepository.findAll();
+//    }
 }

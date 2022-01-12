@@ -16,20 +16,38 @@
 
 package org.joinfaces.example;
 
+import org.joinfaces.example.entities.Employee;
+import org.joinfaces.example.repositories.EmployeeRepository;
+import org.joinfaces.example.services.DataService;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 
 /**
  * JoinFaces Example Configuration class.
+ *
  * @author Marcelo Fernandes
  */
 @SpringBootApplication
 public class JoinFacesExampleApplication {
 
-	/**
-	* Main method.
-	*/
-	public static void main(String[] args) {
-		SpringApplication.run(JoinFacesExampleApplication.class, args);
-	}
+    /**
+     * Main method.
+     */
+    public static void main(String[] args) {
+        SpringApplication.run(JoinFacesExampleApplication.class, args);
+    }
+
+    //Demodaten anlegen
+    @Bean
+    public CommandLineRunner demo(EmployeeRepository repository) {
+        return (args) -> {
+            // save a few customers
+            List<Employee> employeeList = DataService.INSTANCE.getEmployeeList();
+            employeeList.forEach(employee -> repository.save(employee));
+        };
+    }
 }
