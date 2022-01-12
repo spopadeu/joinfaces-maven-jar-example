@@ -52,23 +52,14 @@
         <p:tabView id="tabView">
             <p:tab title="PF Training" id="tabPfTraining">
                 <h:form>
-                    <p:dataTable var="employee" value="#{employeeBean.employeeList}"
-
+                    <p:dataTable var="employee" value="#{employeeBean.dataModel}"
                                  widgetVar="employeeWidget"
                                  paginator="true" rows="10"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink}
                      {PreviousPageLink} {PageLinks} {NextPageLink}
                      {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="5,10,15" >
-<!--                        filteredValue="#{employeeBean.filteredEmployeeList}"-->
-                        <f:facet name="header">
-                            <p:outputPanel>
-                                <h:outputText value="Search all:"/>
-                                <p:inputText id="globalFilter"
-                                             onkeyup="PF('employeeWidget').filter()"
-                                             style="width:150px" placeholder="Search text"/>
-                            </p:outputPanel>
-                        </f:facet>
+                                 rowsPerPageTemplate="5,10,15" lazy="true">
+
                         <p:column headerText="Id" sortBy="#{employee.id}" filterBy="#{employee.id}"
                                   filterMatchMode="contains">
                             <h:outputText value="#{employee.id}"/>
