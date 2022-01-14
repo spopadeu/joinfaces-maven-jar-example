@@ -2,6 +2,8 @@ joinfaces:
   jsf:
     PROJECT_STAGE: Production
     FACELETS_LIBRARIES: /tags/tags.taglib.xml
+    config-files: faces-config.xml
+    webapp-resources-directory: /resources
   primefaces:
     theme: vela
 tomcat:

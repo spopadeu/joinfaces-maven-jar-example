@@ -36,6 +36,9 @@ public class EmployeeLazyDataModel extends LazyDataModel<Employee> {
         Pageable pageable = PageRequest.of(page, pageSize);
         Sort sort = null;
         Page<Employee> list;
+        //Sorting
+        // Filtering manuell oder mit Criteria API
+        //  Page<Book> books = bookRepository.findAllByNameContains(name, pageable);
         if (!sortBy.isEmpty()) {
             String first = sortBy.keySet().stream().findFirst().get();
             sort = Sort.by(first);
